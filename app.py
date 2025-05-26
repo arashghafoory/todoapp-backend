@@ -22,6 +22,10 @@ conn = psycopg2.connect(
     password=DB_PASSWORD
 )
 
+@app.route('/api/version', methods=['GET'])
+def get_version():
+    return jsonify({'version': '1.0.0'})
+
 @app.route('/api/todos', methods=['GET'])
 def get_todos():
     with conn.cursor(cursor_factory=RealDictCursor) as cursor:
