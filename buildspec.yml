@@ -1,0 +1,28 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_ACCOUNT_ID: "706712229921"
+    AWS_REGION: "us-east-1"
+    ECR_REPOSITORY: "todoapp/backend"
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+      - IMAGE_TAG=$CODEBUILD_BUILD_NUMBER
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t $ECR_REPOSITORY:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG .
+  post_build:
+    commands:
+      - echo Pushing Docker image to ECR...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+      - printf '[{"name":"backend-container","imageUri":"%s.dkr.ecr.%s.amazonaws.com/%s:%s"}]' $AWS_ACCOUNT_ID $AWS_REGION $ECR_REPOSITORY $IMAGE_TAG > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
+    - appspec.yaml
