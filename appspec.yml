@@ -1,0 +1,9 @@
+version: 1
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:us-east-1:706712229921:task-definition/todo-backend-task-def:3"
+        LoadBalancerInfo:
+          ContainerName: "todoapp-backend"
+          ContainerPort: 5000
