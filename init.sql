@@ -1,6 +1,7 @@
-
+-- init.sql
 CREATE DATABASE tododb;
 
+\connect tododb
 
 CREATE TABLE IF NOT EXISTS todos (
     id SERIAL PRIMARY KEY,
@@ -16,6 +17,6 @@ CREATE TABLE IF NOT EXISTS todos (
 
 -- docker exec -it postgres psql -U your_user -d tododb -f /path/to/init.sql
 
-psql -h rdsAddress -U postgres -d tododb -f init.sql
+-- psql -h rdsAddress -U postgres -d tododb -f init.sql
 
 -- \c tododb
