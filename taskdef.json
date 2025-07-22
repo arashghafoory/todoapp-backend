@@ -106,5 +106,10 @@
     },
     "registeredAt": "2025-07-22T06:34:41.953Z",
     "registeredBy": "arn:aws:sts::706712229921:assumed-role/AWSCodePipelineServiceRole-us-east-1-test/1753166081594",
-    "tags": []
+    "tags": [
+  {
+    "Key": "env",
+    "Value": "production"
+  }
+]
 }
