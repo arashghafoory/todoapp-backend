@@ -24,7 +24,7 @@ conn = psycopg2.connect(
 
 @app.route('/api/version', methods=['GET'])
 def get_version():
-    return jsonify({'version': '1.0.0'})
+    return jsonify({'version': '1.1.0'})
 
 @app.route('/api/todos', methods=['GET'])
 def get_todos():
