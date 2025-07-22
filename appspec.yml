@@ -1,7 +1,10 @@
-version: 0.0
+version: 1
 Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: todoapp-backend
+        TaskDefinition: "taskdef.json"
+        LoadBalancerInfo:
+          ContainerName: "your-container-name"
+          ContainerPort: 80
         PlatformVersion: "LATEST"
