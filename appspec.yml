@@ -7,4 +7,3 @@ Resources:
         LoadBalancerInfo:
           ContainerName: "todoapp-backend"
           ContainerPort: 80
-        PlatformVersion: "LATEST"
