@@ -5,6 +5,6 @@ Resources:
       Properties:
         TaskDefinition: "taskdef.json"
         LoadBalancerInfo:
-          ContainerName: "your-container-name"
+          ContainerName: "todoapp-backend"
           ContainerPort: 80
         PlatformVersion: "LATEST"
